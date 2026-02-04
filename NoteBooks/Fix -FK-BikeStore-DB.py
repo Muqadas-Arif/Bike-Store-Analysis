@@ -91,3 +91,33 @@ pd.read_sql("""
     FROM sys.foreign_key_columns fkc
     ORDER BY Table_Name;
 """, engine)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------
+=================================----------------------------------=======================================--------------------------------------------------
+### Database Setup & Foreign Keys Fix
+
+ 
+**Purpose:**  
+This script fixes data type mismatches and adds foreign key constraints to the BikeStore database.  
+
+**Why we did this:**  
+- During CSV import using SSMS Import Wizard, some columns got wrong data types (e.g., category_id as nvarchar in categories but tinyint in products).  
+- Foreign keys could not be created due to type mismatch and nullable columns on PKs.  
+- We:  
+  - Replaced NULLs with default values  
+  - Changed column types to match (mostly INT or SMALLINT NOT NULL)  
+  - Dropped and re-added primary keys where needed  
+  - Added all necessary foreign keys for referential integrity  
+
+**Result:**  
+All tables now have correct relationships (e.g., orders → customers, order_items → products, products → categories). Joins work perfectly and data consistency is maintained.
+
+**Run this before any analysis notebooks.**
+
+
+
+
+
+
+
+
+
